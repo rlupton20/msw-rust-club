@@ -17,7 +17,14 @@ fn main() {
         println!("Dice {:?}", dice);
 
         println!("Make a guess: ");
-        let guess: u8 = get_guess();
+        let mut guess: String = String::new();
+        io::stdin().read_line(&mut guess)
+            .expect("Failed to read from stdin");
+
+        let guess: u8 = match guess.trim().parse() {
+            Ok(n) => n,
+            Err(_) => continue
+        };
 
         match guess.cmp(&num_petals) {
             Ordering::Equal => {
@@ -27,17 +34,6 @@ fn main() {
             _ => println!("Nah. It's {}. Try again", num_petals)
         }
     }
-}
-
-
-fn get_guess() -> u8 {
-    let mut guess: String = String::new();
-
-    io::stdin().read_line(&mut guess)
-        .expect("Failed to read from stdin");
-
-    guess.trim().parse()
-        .expect("Please type a number >0 and <256")
 }
 
 
