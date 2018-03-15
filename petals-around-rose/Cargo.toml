@@ -1,0 +1,8 @@
+[package]
+name = "petals-around-rose"
+version = "0.1.0"
+authors = ["Richard Lupton <richard.lupton@gmail.com>"]
+
+[dependencies]
+
+rand = "0.3.14"
