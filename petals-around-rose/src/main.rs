@@ -1,6 +1,7 @@
 extern crate rand;
 
 use std::io;
+use std::cmp::Ordering;
 use rand::Rng;
 
 
@@ -18,12 +19,12 @@ fn main() {
         println!("Make a guess: ");
         let guess: u8 = get_guess();
 
-        if guess == num_petals {
-            println!("Nice one");
-            break;
-        }
-        else {
-            println!("Nah. Tis {}. Try again.\n", num_petals);
+        match guess.cmp(&num_petals) {
+            Ordering::Equal => {
+                println!("Nice one!");
+                break;
+            },
+            _ => println!("Nah. It's {}. Try again", num_petals)
         }
     }
 }
